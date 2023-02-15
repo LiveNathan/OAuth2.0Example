@@ -18,4 +18,14 @@ public class TheController {
         }
         return "index";
     }
+
+    @GetMapping("/test")
+    public String getTestPage() {
+        return "test";
+    }
+
+    @GetMapping("/loginCustom")
+    public String getLoginPage() {
+        return "loginCustom";
+    }
 }

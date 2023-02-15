@@ -15,8 +15,26 @@ public class SecurityConfig {
                 .antMatchers("/", "/error").permitAll()
                 .antMatchers("/protected").authenticated()
                 .anyRequest().permitAll()
+                // OAuth 2.0
                 .and()
-                .oauth2Login();
+                .oauth2Login()
+                .loginPage("/loginCustom")
+                .defaultSuccessUrl("/protected")
+                .and()
+                // Form login
+                .formLogin()
+                .loginPage("/loginCustom")
+                .defaultSuccessUrl("/protected")
+                // Custom logout
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                // ConcurrentSessionFilter
+                .and()
+                .sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true);
 
         return http.build();
     }
