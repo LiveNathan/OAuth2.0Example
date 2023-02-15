@@ -12,7 +12,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/error").permitAll()
                 .antMatchers("/protected").authenticated()
                 .anyRequest().permitAll()
                 .and()
